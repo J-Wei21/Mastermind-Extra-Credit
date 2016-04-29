@@ -10,16 +10,18 @@ public class Key {
 	private static String key;
 	
 	private String guess;
-	public final static char[] VALID_COLORS = {'B', 'G', 'O', 'P', 'R', 'Y'};
+	public final static char[] VALID_COLORS = {'B', 'G', 'O', 'P', 'R', 'Y', 'L', 'M'};
+	private static int colorNum;
 	
 	public static void setSize(int i) {
 		size = i;
 	}
 	
-	public static void createRandomKey(){
+	public static void createRandomKey(int numColors){
+		colorNum = numColors;
 		key = "";
 		for(int i = 0; i < size; i += 1) {
-			key += VALID_COLORS[(int) (Math.random() * VALID_COLORS.length)];
+			key += VALID_COLORS[(int) (Math.random() * numColors)];
 		}
 	}
 
@@ -27,8 +29,8 @@ public class Key {
 		if(s.length() != size) return false;
 		for(char c: s.toCharArray()) {
 			boolean temp = false;
-			for(char c2: VALID_COLORS) {
-				if(c == c2) temp = true;
+			for(int i = 0; i < colorNum; i+=1) {
+				if(c == VALID_COLORS[i]) temp = true;
 			}
 			if(!temp) return false;
 		}
