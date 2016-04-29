@@ -7,32 +7,50 @@
 public class Key {
 
 	private static int size;
-	private String key;
-	public final static String[] VALID_COLORS = {"B", "G", "O", "P", "R", "Y"};
+	private static String key;
+	
+	private String guess;
+	public final static char[] VALID_COLORS = {'B', 'G', 'O', 'P', 'R', 'Y'};
 	
 	public static void setSize(int i) {
 		size = i;
 	}
 	
-	public Key(){
+	public static void createRandomKey(){
 		key = "";
 		for(int i = 0; i < size; i += 1) {
 			key += VALID_COLORS[(int) (Math.random() * VALID_COLORS.length)];
 		}
 	}
-	
-	public Key(String input) {
-		key = input;
+
+	public static boolean validKey(String s) {
+		if(s.length() != size) return false;
+		for(char c: s.toCharArray()) {
+			boolean temp = false;
+			for(char c2: VALID_COLORS) {
+				if(c == c2) temp = true;
+			}
+			if(!temp) return false;
+		}
+		return true;
 	}
 	
-	public String getKey() {
+	public static String getKey() {
 		return key;
 	}
 	
-	public int[] checkKey(Key key2) {
+	public Key(String input) {
+		guess = input;
+	}
+	
+	public String getGuess() {
+		return guess;
+	}
+	
+	public int[] checkKey() {
 		int[] result = new int[2];
-		char[] temp1 = this.key.toCharArray();
-		char[] temp2 = key2.getKey().toCharArray();
+		char[] temp1 = guess.toCharArray();
+		char[] temp2 = key.toCharArray();
 		for(int i = 0; i < size; i += 1) {
 			if(temp1[i] == temp2[i]) {
 				temp1[i] = ' ';
