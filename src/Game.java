@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 /* Name: Caroline Yao & Horng-Bin Justin Wei
  * EID: Chy253 & Hjw396
- * Section: Thursday 3:30-5:30pm & Friday 2-3:30pm
+ * Section: Thursday 3:30-5:00pm & Friday 2-3:30pm
  * EE 422C Extra Credit Assignment
  */
 
@@ -73,13 +73,13 @@ public class Game {
 		Key.createRandomKey();
 		
 		System.out.println("Generating your challenge, young grasshopper...");
-		System.out.println(Key.getKey() + "\n");
+		if(testMode)
+			System.out.println(Key.getKey() + "\n");
 
 		int numTries = 12;
 		
 		while (numTries > 0){
-//			if(testMode)
-//				System.out.println(Key.getKey());
+
 			System.out.println("\nYou have " + numTries + " guesses left.\n"
 					+ "What is your next guess?\n"
 					+ "Type in the characters for your guess and press enter.\n"
